@@ -1,5 +1,4 @@
 using CodeBase.Configs;
-using UnityEngine;
 
 namespace CodeBase.Gameplay.Enemy
 {

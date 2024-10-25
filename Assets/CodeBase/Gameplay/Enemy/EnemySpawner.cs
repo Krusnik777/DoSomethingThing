@@ -1,5 +1,4 @@
 using CodeBase.Configs;
-using CodeBase.Gameplay.Hero;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -10,11 +9,14 @@ namespace CodeBase.Gameplay.Enemy
         [SerializeField] private EnemyConfig[] m_spawnableEnemies;
         [SerializeField] private float m_spawnTime;
         [SerializeField] private bool m_spawnAtStart;
-        [SerializeField] private HeroHealth m_heroHealth; // temp
+
+        private SpawnController parentController;
 
         public event UnityAction<EnemyHealth> EventOnSpawn;
 
         private float timer;
+
+        public void Setup(SpawnController spawnController) => parentController = spawnController;
 
         private void OnEnable()
         {
@@ -24,18 +26,7 @@ namespace CodeBase.Gameplay.Enemy
 
         private void Update()
         {
-            if (!SpawnController.SpawnIsAvailable) return;
-
-            // TEMP
-
-            if (m_heroHealth == null)
-            {
-                enabled = false;
-
-                return;
-            }
-
-            // TEMP END
+            if (!parentController.SpawnIsAvailable) return;
 
             timer += Time.deltaTime;
 
@@ -58,9 +49,7 @@ namespace CodeBase.Gameplay.Enemy
                 return;
             }
 
-            GameObject enemy = Instantiate(enemyConfig.Prefab);
-
-            enemy.transform.position = transform.position;
+            GameObject enemy = Instantiate(enemyConfig.Prefab, transform.position, Quaternion.identity);
 
             IEnemyConfigInstaller[] enemyConfigInstallers = enemy.GetComponentsInChildren<IEnemyConfigInstaller>();
 
@@ -69,15 +58,8 @@ namespace CodeBase.Gameplay.Enemy
                 enemyConfigInstallers[i].InstallConfig(enemyConfig);
             }
 
-            // TEMP
-
-            if (m_heroHealth != null)
-            {
-                enemy.GetComponent<EnemyFollowHero>().SetFollowTarget(m_heroHealth.gameObject);
-                enemy.GetComponent<EnemyCollide>().SetHeroHealth(m_heroHealth);
-            }
-
-            // TEMP END
+            enemy.GetComponent<EnemyFollowHero>().SetFollowTarget(parentController.HeroHealth.gameObject);
+            enemy.GetComponent<EnemyCollide>().SetHeroHealth(parentController.HeroHealth);
 
             EventOnSpawn?.Invoke(enemy.GetComponent<EnemyHealth>());
         }

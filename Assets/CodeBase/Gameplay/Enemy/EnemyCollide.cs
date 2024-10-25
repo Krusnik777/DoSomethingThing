@@ -1,13 +1,20 @@
+using CodeBase.Configs;
 using CodeBase.Gameplay.Hero;
 using UnityEngine;
 
 namespace CodeBase.Gameplay.Enemy
 {
-    public class EnemyCollide : MonoBehaviour
+    public class EnemyCollide : MonoBehaviour, IEnemyConfigInstaller
     {
         [SerializeField] private EnemyFollowHero m_enemyFollowHero;
         [SerializeField] private EnemyHealth m_enemyHealth;
-        [SerializeField] private HeroHealth m_heroHealth; //temp
+        [SerializeField] private int m_damage = 1;  // Serialize is for debug or hand input
+        [SerializeField] private HeroHealth m_heroHealth;  // Serialize is for debug or hand input
+
+        public void InstallConfig(EnemyConfig config)
+        {
+            m_damage = config.Damage;
+        }
 
         public void SetHeroHealth(HeroHealth heroHealth) => m_heroHealth = heroHealth;
 
@@ -23,7 +30,7 @@ namespace CodeBase.Gameplay.Enemy
 
         private void OnReachedHero()
         {
-            if (m_heroHealth != null) m_heroHealth.ApplyDamage(1); // TEMP
+            if (m_heroHealth != null) m_heroHealth.ApplyDamage(m_damage);
 
             m_enemyHealth.ApplyDamage(999);
         }

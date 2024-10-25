@@ -1,51 +1,77 @@
+using CodeBase.Gameplay;
 using CodeBase.Gameplay.Enemy;
+using CodeBase.Gameplay.Hero;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace CodeBase
 {
-    // TEMP CLASS
     public class SpawnController : MonoBehaviour
     {
-        public static bool SpawnIsAvailable;
-
         [SerializeField] private EnemySpawner[] m_enemySpawners;
         [SerializeField] private int m_maxSpawns = 6;
         [SerializeField] private int m_minSpawns = 4;
 
-        private int currentSpawns;
+        public event UnityAction EventOnSpawnDead;
 
-        private void Start()
+        private bool spawnIsAvailable;
+        public bool SpawnIsAvailable => spawnIsAvailable && heroHealth != null;
+
+        private HeroHealth heroHealth;
+        public HeroHealth HeroHealth => heroHealth;
+
+        private int spawnedEnemies;
+
+        public void Init(HeroHealth heroHealth)
         {
+            this.heroHealth = heroHealth;
+
+            heroHealth.EventOnDie += OnHeroDeath;
+
             for (int i = 0; i < m_enemySpawners.Length; i++)
             {
                 m_enemySpawners[i].gameObject.SetActive(true);
+                m_enemySpawners[i].Setup(this);
                 m_enemySpawners[i].EventOnSpawn += OnSpawn;
             }
 
-            SpawnIsAvailable = true;
+            spawnedEnemies = 0;
+
+            spawnIsAvailable = true;
         }
 
-        private void OnDestroy()
+        private void OnDisable()
         {
             for (int i = 0; i < m_enemySpawners.Length; i++)
             {
+                m_enemySpawners[i].gameObject.SetActive(false);
                 m_enemySpawners[i].EventOnSpawn -= OnSpawn;
             }
+
+            spawnIsAvailable = false;
+        }
+
+        private void OnHeroDeath()
+        {
+            enabled = false;
         }
 
         private void OnSpawn(EnemyHealth enemyHealth)
         {
-            currentSpawns++;
+            spawnedEnemies++;
             enemyHealth.EventOnDie += OnSpawnsDie;
 
-            if (currentSpawns >= m_maxSpawns) SpawnIsAvailable = false;
+            if (spawnedEnemies >= m_maxSpawns) spawnIsAvailable = false;
         }
 
         private void OnSpawnsDie()
         {
-            currentSpawns--;
+            EventOnSpawnDead?.Invoke();
 
-            if (currentSpawns <= m_minSpawns) SpawnIsAvailable = true;
+            spawnedEnemies--;
+
+            if (spawnedEnemies <= m_minSpawns) spawnIsAvailable = true;
         }
     }
 }

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 215f6c4ef4095684683deee9062cfd0f, type: 3}
   m_Name: TestBox_03
   m_EditorClassIdentifier: 
+  Damage: 1
   MovementSpeed: 1
   StopDistance: 1
   HealthPoints: 3

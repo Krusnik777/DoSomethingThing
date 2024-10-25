@@ -7,10 +7,10 @@ namespace CodeBase.Gameplay.Enemy
 {
     public class EnemyFollowHero : MonoBehaviour, IEnemyConfigInstaller
     {
-        [SerializeField] private float m_movementSpeed;
-        [SerializeField] private float m_stopDistance;
+        [SerializeField] private float m_movementSpeed; // Serialize is for debug or hand input
+        [SerializeField] private float m_stopDistance; // Serialize is for debug or hand input
         [SerializeField] private NavMeshAgent m_agent;
-        [SerializeField] private GameObject m_hero; // temp
+        [SerializeField] private GameObject m_followTarget; // Serialize is for debug or hand input
 
         public event UnityAction EventOnReached;
 
@@ -22,7 +22,7 @@ namespace CodeBase.Gameplay.Enemy
             m_stopDistance = config.StopDistance;
         }
 
-        public void SetFollowTarget(GameObject gameObject) => m_hero = gameObject;
+        public void SetFollowTarget(GameObject gameObject) => m_followTarget = gameObject;
 
         private void Start()
         {
@@ -33,9 +33,9 @@ namespace CodeBase.Gameplay.Enemy
 
         private void Update()
         {
-            if (m_hero == null || reached) return;
+            if (m_followTarget == null || reached) return;
 
-            if (Vector3.Distance(m_agent.transform.position, m_hero.transform.position) <= m_stopDistance)
+            if (Vector3.Distance(m_agent.transform.position, m_followTarget.transform.position) <= m_stopDistance)
             {
                 EventOnReached?.Invoke();
 
@@ -44,7 +44,7 @@ namespace CodeBase.Gameplay.Enemy
                 return;
             }
 
-            m_agent.destination = m_hero.transform.position;
+            m_agent.destination = m_followTarget.transform.position;
         }
     }
 }
