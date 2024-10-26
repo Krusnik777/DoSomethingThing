@@ -14,6 +14,8 @@ namespace CodeBase.Gameplay.Level
         private bool completed;
         public bool Completed => completed;
 
+        public int TargetValue => m_targetKills;
+
         public void Init(GameplayController gameplayController)
         {
             this.gameplayController = gameplayController;

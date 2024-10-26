@@ -15,6 +15,8 @@ namespace CodeBase.Gameplay.Level
         public float RemainingTime => m_targetTime - timeCounter.CountedValue;
         public bool Completed => RemainingTime <= 0;
 
+        public int TargetValue => (int) (m_targetTime);
+
         public void Init(GameplayController gameplayController)
         {
             timeCounter = gameplayController.TimeCounter;

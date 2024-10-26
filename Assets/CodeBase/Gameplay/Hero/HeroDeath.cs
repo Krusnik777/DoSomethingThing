@@ -16,7 +16,7 @@ namespace CodeBase.Gameplay.Hero
             m_health.EventOnDie -= OnDie;
         }
 
-        private void OnDie()
+        private void OnDie(object sender)
         {
             Destroy(gameObject);
         }

@@ -1,28 +1,29 @@
 using CodeBase.Data;
+using CodeBase.Gameplay.Enemy;
 using CodeBase.Gameplay.Hero;
 using CodeBase.Gameplay.Level;
+using CodeBase.Hero;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace CodeBase.Gameplay
 {
     public class GameplayController : MonoBehaviour
     {
         [SerializeField] private HeroHealth m_heroHealth;
+        [SerializeField] private HeroWeapon m_heroWeapon;
         [SerializeField] private SpawnController m_spawnController;
         [SerializeField] private TimeCounter m_timerCounter;
+
+        public event UnityAction EventOnSuccess;
+        public event UnityAction EventOnFailure;
+
         public TimeCounter TimeCounter => m_timerCounter;
 
         private KillsCounter killsCounter;
         public KillsCounter KillsCounter => killsCounter;
 
         private ILevelCondition[] levelConditions;
-
-        // TEMP
-        private void Start()
-        {
-            Init(new PlayerProgress());
-        }
-        // TEMP END
 
         public void Init(PlayerProgress progress)
         {
@@ -34,7 +35,11 @@ namespace CodeBase.Gameplay
 
             if (progress.EquippedWeapon != null)
             {
-                //equip weapon
+                m_heroWeapon.GetWeapon(progress.EquippedWeapon.Prefab);
+            }
+            else
+            {
+                m_heroWeapon.enabled = false;
             }
 
             m_spawnController.Init(m_heroHealth);
@@ -56,12 +61,12 @@ namespace CodeBase.Gameplay
             m_spawnController.EventOnSpawnDead -= OnSpawnDead;
         }
 
-        private void OnSpawnDead()
+        private void OnSpawnDead(object sender)
         {
-            killsCounter.UpdateKills();
+            if (sender is MeleeWeaponAttack || sender is HeroAttack) killsCounter.UpdateKills();
         }
 
-        private void OnHeroDeath()
+        private void OnHeroDeath(object sender)
         {
             m_heroHealth.EventOnDie -= OnHeroDeath;
 
@@ -69,6 +74,8 @@ namespace CodeBase.Gameplay
             Debug.Log("GAME OVER");
 
             m_spawnController.enabled = false;
+
+            EventOnFailure?.Invoke();
         }
 
         private void OnConditionCompleted()
@@ -81,7 +88,19 @@ namespace CodeBase.Gameplay
             // Level END
             Debug.Log("Level Completed");
 
+            m_spawnController.EventOnSpawnDead -= OnSpawnDead;
+
             m_spawnController.enabled = false;
+
+            m_heroHealth.GetComponent<HeroInput>().enabled = false;
+            m_heroHealth.GetComponent<HeroMovement>().enabled = false;
+
+            EnemyHealth.CleanupRemainingEnemies();
+
+            if (GlobalController.Instance != null)
+                GlobalController.PlayerProgress.HealthPoints = m_heroHealth.CurrentValue;
+
+            EventOnSuccess?.Invoke();
         }
     }
 }

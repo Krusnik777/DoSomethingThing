@@ -32,7 +32,7 @@ namespace CodeBase.Gameplay.Hero
 
         private bool CanAttack()
         {
-            return timer >= m_cooldown && m_heroMovement.DirectionControl.magnitude < 0.05f;
+            return timer >= m_cooldown && m_heroMovement.DirectionControl == Vector3.zero;
         }
 
         private HealthPoints[] FindTargets()
@@ -63,7 +63,7 @@ namespace CodeBase.Gameplay.Hero
         {
             for (int i = 0; i < targets.Length; i++)
             {
-                if (targets[i] != null) targets[i].ApplyDamage(m_damage);
+                if (targets[i] != null) targets[i].ApplyDamage(this, m_damage);
             }
         }
 

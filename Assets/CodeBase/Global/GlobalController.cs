@@ -10,7 +10,7 @@ namespace CodeBase
     {
         public static GlobalController Instance { get; private set; }
 
-        //[SerializeField] private SceneLoader m_sceneLoader;
+        [SerializeField] private SceneLoader m_sceneLoader;
         [Header("SoundControllers")]
         [SerializeField] private SoundVolumeController m_soundVolumeController;
         [SerializeField] private SFXController m_sFXController;
@@ -26,6 +26,7 @@ namespace CodeBase
         public static BGMController BGMController => Instance.m_bGMController;
 
         private event UnityAction onStartMenuLoaded;
+        private event UnityAction onNewSceneLoaded;
 
         private void Awake()
         {
@@ -47,8 +48,6 @@ namespace CodeBase
 
         private void Bootstrap()
         {
-            playerProgress = new PlayerProgress();
-
             m_soundVolumeController.Init();
             m_sFXController.Init();
             m_bGMController.Init();
@@ -60,21 +59,47 @@ namespace CodeBase
         {
             onStartMenuLoaded += OnStartMenuLoaded;
 
-            //m_loadingCanvas.SetActive(true);
+            m_loadingCanvas.SetActive(true);
 
-            //m_sceneLoader.Load(SceneLoader.StartScene, onStartMenuLoaded);
+            m_sceneLoader.Load(Constants.StartSceneName, onStartMenuLoaded);
+        }
+
+        public void LoadGachaScene()
+        {
+            onNewSceneLoaded += OnNewSceneLoaded;
+
+            m_loadingCanvas.SetActive(true);
+
+            m_sceneLoader.Load(Constants.GachaSceneName, onNewSceneLoaded);
+        }
+
+        public void LoadScene(string sceneName)
+        {
+            onNewSceneLoaded += OnNewSceneLoaded;
+
+            m_loadingCanvas.SetActive(true);
+
+            m_sceneLoader.Load(sceneName, onNewSceneLoaded);
+        }
+
+        private void OnNewSceneLoaded()
+        {
+            onNewSceneLoaded -= OnNewSceneLoaded;
+
+            m_loadingCanvas.SetActive(false);
+
+            if (SceneStarter.Instance != null) SceneStarter.Instance.LaunchScene();
         }
 
         private void OnStartMenuLoaded()
         {
             onStartMenuLoaded -= OnStartMenuLoaded;
 
-            //startMenu = FindAnyObjectByType<StartMenu>();
-            //startMenu.Init();
+            playerProgress = new PlayerProgress();
 
-            //m_bGMController.StartPlayStartMenuBGM();
+            m_bGMController.StartPlayStartMenuBGM();
 
-            //m_loadingCanvas.SetActive(false);
+            m_loadingCanvas.SetActive(false);
         }
     }
 }

@@ -6,7 +6,17 @@ namespace CodeBase.Gameplay.Hero
     {
         [SerializeField] protected int m_maxPossibleValue = 5;
 
-        public void SetHealthPoints(int value) => m_currentValue = value;
+        public void SetHealthPoints(int value)
+        {
+            if (value > m_maxPossibleValue)
+            {
+                m_currentValue = m_maxPossibleValue;
+            }
+            else
+            {
+                m_currentValue = value;
+            }
+        }
 
         private void AddHealth(int value)
         {

@@ -1,11 +1,9 @@
-using CodeBase.Gameplay;
 using CodeBase.Gameplay.Enemy;
 using CodeBase.Gameplay.Hero;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace CodeBase
+namespace CodeBase.Gameplay
 {
     public class SpawnController : MonoBehaviour
     {
@@ -13,7 +11,7 @@ namespace CodeBase
         [SerializeField] private int m_maxSpawns = 6;
         [SerializeField] private int m_minSpawns = 4;
 
-        public event UnityAction EventOnSpawnDead;
+        public event UnityAction<object> EventOnSpawnDead;
 
         private bool spawnIsAvailable;
         public bool SpawnIsAvailable => spawnIsAvailable && heroHealth != null;
@@ -52,7 +50,7 @@ namespace CodeBase
             spawnIsAvailable = false;
         }
 
-        private void OnHeroDeath()
+        private void OnHeroDeath(object sender)
         {
             enabled = false;
         }
@@ -65,9 +63,9 @@ namespace CodeBase
             if (spawnedEnemies >= m_maxSpawns) spawnIsAvailable = false;
         }
 
-        private void OnSpawnsDie()
+        private void OnSpawnsDie(object sender)
         {
-            EventOnSpawnDead?.Invoke();
+            EventOnSpawnDead?.Invoke(sender);
 
             spawnedEnemies--;
 

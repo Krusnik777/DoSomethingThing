@@ -30,9 +30,9 @@ namespace CodeBase.Gameplay.Enemy
 
         private void OnReachedHero()
         {
-            if (m_heroHealth != null) m_heroHealth.ApplyDamage(m_damage);
+            if (m_heroHealth != null) m_heroHealth.ApplyDamage(m_enemyHealth, m_damage);
 
-            m_enemyHealth.ApplyDamage(999);
+            m_enemyHealth.ApplyDamage(m_enemyHealth, 999);
         }
     }
 }
