@@ -16,4 +16,4 @@ MonoBehaviour:
   MovementSpeed: 3
   StopDistance: 1
   HealthPoints: 1
-  Prefab: {fileID: 1558488221840467495, guid: 90a7b7b9e297415428237d53394408e3, type: 3}
+  Prefab: {fileID: 1558488221840467495, guid: d2b31cbfaa7f34e4e87de891aa476949, type: 3}
