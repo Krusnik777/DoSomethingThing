@@ -1,9 +1,10 @@
+using CodeBase.Configs;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace CodeBase.Gameplay.Hero
 {
-    public class MeleeWeaponAttack : MonoBehaviour
+    public class MeleeWeaponAttack : MonoBehaviour, IWeaponConfigInstaller
     {
         [SerializeField] private MeleeWeaponAttackAnimator m_animator;
         [SerializeField] private float m_cooldown;
@@ -13,6 +14,13 @@ namespace CodeBase.Gameplay.Hero
         private HealthPoints[] targets;
 
         private float timer;
+
+        public void InstallConfig(WeaponConfig config)
+        {
+            m_cooldown = config.Cooldown;
+            m_radius = config.Radius;
+            m_damage = config.Damage;
+        }
 
         private void Start()
         {

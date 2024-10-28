@@ -35,7 +35,7 @@ namespace CodeBase.Gameplay
 
             if (progress.EquippedWeapon != null)
             {
-                m_heroWeapon.GetWeapon(progress.EquippedWeapon.Prefab);
+                m_heroWeapon.GetWeapon(progress.EquippedWeapon);
             }
             else
             {

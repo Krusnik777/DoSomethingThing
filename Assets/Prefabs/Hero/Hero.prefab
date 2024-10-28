@@ -165,7 +165,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_weaponPoint: {fileID: 5507416854377940027}
   m_heroAttack: {fileID: 8538042102497261630}
-  m_weaponAttack: {fileID: 1443907015072861465, guid: 44934a02189536a40940d1ef56d30288, type: 3}
 --- !u!1 &4649553288232235158
 GameObject:
   m_ObjectHideFlags: 0
@@ -514,7 +513,7 @@ MonoBehaviour:
   m_heroMovement: {fileID: 7445343637368195422}
   m_animator: {fileID: 2247010160921881536}
   m_cooldown: 1
-  m_radius: 3
+  m_radius: 2
   m_damage: 1
 --- !u!4 &3456947931475932573 stripped
 Transform:

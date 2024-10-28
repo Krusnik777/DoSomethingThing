@@ -7,9 +7,9 @@ namespace CodeBase.Configs
     public class WeaponConfig : ScriptableObject
     {
         public string Name;
-        //public float Radius;
-        //public float Cooldown;
-        //public int Damage;
+        public float Radius;
+        public float Cooldown;
+        public int Damage;
         public MeleeWeaponAttack Prefab;
     }
 }

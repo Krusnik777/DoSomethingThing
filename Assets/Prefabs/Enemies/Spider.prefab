@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5496451003159817102}
   - component: {fileID: 5690619943482111746}
   - component: {fileID: 7697936125523785330}
+  - component: {fileID: 128031644625862861}
   m_Layer: 0
   m_Name: Spider
   m_TagString: Untagged
@@ -141,6 +142,20 @@ MonoBehaviour:
   m_enemyHealth: {fileID: 5496451003159817102}
   m_damage: 1
   m_heroHealth: {fileID: 0}
+--- !u!114 &128031644625862861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1558488221840467495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb4eda61e0e591d4691fcf6ef1a02252, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_enemyHealth: {fileID: 5496451003159817102}
+  m_hitEffectPrefab: {fileID: 7803347294885300511, guid: ef0ce399b26ef80448db24fe71d8a591, type: 3}
 --- !u!1 &3929669569914581120
 GameObject:
   m_ObjectHideFlags: 0

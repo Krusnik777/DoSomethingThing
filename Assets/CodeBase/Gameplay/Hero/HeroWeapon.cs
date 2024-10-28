@@ -1,3 +1,4 @@
+using CodeBase.Configs;
 using CodeBase.Gameplay.Hero;
 using UnityEngine;
 
@@ -8,9 +9,11 @@ namespace CodeBase.Hero
         [SerializeField] private Transform m_weaponPoint;
         [SerializeField] private HeroAttack m_heroAttack;
 
-        public void GetWeapon(MeleeWeaponAttack meleeWeaponAttack)
+        public void GetWeapon(WeaponConfig config)
         {
-            Instantiate(meleeWeaponAttack, m_weaponPoint);
+            var weapon = Instantiate(config.Prefab, m_weaponPoint);
+
+            weapon.InstallConfig(config);
 
             m_heroAttack.enabled = false;
         }
