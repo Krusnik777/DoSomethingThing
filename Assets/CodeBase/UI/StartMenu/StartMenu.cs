@@ -5,28 +5,44 @@ namespace CodeBase.UI
 {
     public class StartMenu : MonoBehaviour
     {
+        [SerializeField] private SettingsPanel m_settingsPanel;
+        [Header("Buttons")]
         [SerializeField] private Button m_startButton;
+        [SerializeField] private Button m_startInfiniteButton;
+        [SerializeField] private Button m_settingsButton;
         [SerializeField] private Button m_endButton;
-
-        // ALSO SETTINGS PANEL
 
         private void Awake()
         {
             m_startButton.onClick.AddListener(OnStartButton);
+            m_startInfiniteButton.onClick.AddListener(OnStartInfiniteButton);
+            m_settingsButton.onClick.AddListener(OnSettingsButton);
             m_endButton.onClick.AddListener(OnEndButton);
         }
 
         private void OnDestroy()
         {
             m_startButton.onClick.RemoveListener(OnStartButton);
+            m_startInfiniteButton.onClick.RemoveListener(OnStartInfiniteButton);
+            m_settingsButton.onClick.RemoveListener(OnSettingsButton);
             m_endButton.onClick.RemoveListener(OnEndButton);
         }
 
         private void OnStartButton()
         {
-            //GlobalController.Instance.LoadScene(Constants.VN_StartSceneName);
+            GlobalController.Instance.SetGameMode(GameMode.Story);
+            GlobalController.Instance.LoadScene(Constants.VN_StartSceneName);
+        }
 
-            GlobalController.Instance.LoadScene("GameplaySceneBase"); // TEMP for Tests
+        private void OnStartInfiniteButton()
+        {
+            GlobalController.Instance.SetGameMode(GameMode.Infinite);
+            GlobalController.Instance.LoadScene("GameplaySceneBase"); // SceneName is TEMP for Tests
+        }
+
+        private void OnSettingsButton()
+        {
+            m_settingsPanel.InitPanel();
         }
 
         private void OnEndButton()

@@ -1,9 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace CodeBase.VNScenes
@@ -43,10 +39,8 @@ namespace CodeBase.VNScenes
             Use(slides[currentSlideIndex]);
         }
 
-
         private void Update()
         {
-
             if (switchMode == SwitchSlideMode.time)
             {
                 timer -= Time.deltaTime;
@@ -69,8 +63,6 @@ namespace CodeBase.VNScenes
                 currentSlideIndex = Mathf.Max(0, currentSlideIndex);
                 CheckNextSlide();
             }
-
-            
         }
 
         private void CheckNextSlide()
@@ -85,15 +77,11 @@ namespace CodeBase.VNScenes
             }
         }
 
-
-
-
         private void LoadNextScene()
         {
-            SceneLoader.Instance?.LoadScene(nextSceneName);
+            GlobalController.Instance.LoadScene(nextSceneName);
+            enabled = false;
         }
-
-
 
         /// <summary>
         /// apply current slide

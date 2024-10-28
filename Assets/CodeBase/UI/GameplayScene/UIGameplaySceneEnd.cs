@@ -34,7 +34,17 @@ namespace CodeBase.UI
         {
             // TO NEXT SCENE - GACHA OR FINAL
 
-            // TEMP
+            if (GlobalController.GameMode == GameMode.Story)
+            {
+                if (GlobalController.PlayerProgress.CurrentDay >= 3)
+                {
+                    //GlobalController.Instance.LoadScene(Constants.VN_GameEndSceneName);
+                    GlobalController.Instance.LoadStartScene(); // TEMP
+
+                    return;
+                }
+            }
+
             GlobalController.Instance.LoadGachaScene();
         }
 
@@ -49,14 +59,15 @@ namespace CodeBase.UI
             m_HUD.SetActive(false);
             m_gameOverPanel.SetActive(true);
 
-            StartCoroutine(ReturnToStartMenuRoutine());
+            StartCoroutine(GameOverRoutine());
         }
 
-        private IEnumerator ReturnToStartMenuRoutine()
+        private IEnumerator GameOverRoutine()
         {
             yield return new WaitForSeconds(2f);
 
-            GlobalController.Instance.LoadStartScene();
+            //GlobalController.Instance.LoadScene(Constants.VN_GameOverSceneName);
+            GlobalController.Instance.LoadStartScene(); // TEMP
         }
     }
 }

@@ -29,9 +29,18 @@ namespace CodeBase.UI
 
         private void OnNextButton()
         {
-            // TO NEXT SCENE
-
-            GlobalController.Instance.LoadScene("GameplaySceneBase"); // TEMP for Tests
+            if (GlobalController.GameMode == GameMode.Story)
+            {
+                /*
+                int day = GlobalController.PlayerProgress.CurrentDay;
+                GlobalController.Instance.LoadScene(Constants.GetSceneNameByDay(day));
+                */
+                GlobalController.Instance.LoadScene("GameplaySceneBase"); // TEMP for Tests
+            }
+            else
+            {
+                GlobalController.Instance.LoadScene("GameplaySceneBase"); // TEMP for Tests
+            }
         }
 
         private void OnGachaEnd(WeaponConfig config)

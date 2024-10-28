@@ -98,7 +98,9 @@ namespace CodeBase.Gameplay
             EnemyHealth.CleanupRemainingEnemies();
 
             if (GlobalController.Instance != null)
+            {
                 GlobalController.PlayerProgress.HealthPoints = m_heroHealth.CurrentValue;
+            }
 
             EventOnSuccess?.Invoke();
         }

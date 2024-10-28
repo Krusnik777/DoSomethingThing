@@ -12,9 +12,12 @@ EditorBuildSettings:
     path: Assets/Scenes/StartMenuScene.unity
     guid: 0b9fdc62c2ca3f744ba5360b83bf70fa
   - enabled: 1
+    path: Assets/Scenes/VN/VN_StartScene.unity
+    guid: 9da6ac1c84c179f4a9b4fab55847c778
+  - enabled: 1
     path: Assets/Scenes/GameplayScenes/GameplaySceneBase.unity
     guid: 951022d9bbcde4345b3a37933afa377a
   - enabled: 1
-    path: Assets/Scenes/GachaScene.unity
+    path: Assets/Scenes/GachaScene/GachaScene.unity
     guid: ea3e3da273e46a146ad4d0b39af38207
   m_configObjects: {}

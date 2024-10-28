@@ -6,6 +6,12 @@ using UnityEngine.Events;
 
 namespace CodeBase
 {
+    public enum GameMode
+    {
+        Story,
+        Infinite
+    }
+
     public class GlobalController : MonoBehaviour
     {
         public static GlobalController Instance { get; private set; }
@@ -25,8 +31,42 @@ namespace CodeBase
         public static SFXController SFXController => Instance.m_sFXController;
         public static BGMController BGMController => Instance.m_bGMController;
 
+        private GameMode m_gameMode;
+        public static GameMode GameMode => Instance.m_gameMode;
+
         private event UnityAction onStartMenuLoaded;
         private event UnityAction onNewSceneLoaded;
+
+        public void LoadStartScene()
+        {
+            onStartMenuLoaded += OnStartMenuLoaded;
+
+            m_loadingCanvas.SetActive(true);
+
+            m_sceneLoader.Load(Constants.StartSceneName, onStartMenuLoaded);
+        }
+
+        public void LoadGachaScene()
+        {
+            onNewSceneLoaded += OnNewSceneLoaded;
+
+            playerProgress.CurrentDay++;
+
+            m_loadingCanvas.SetActive(true);
+
+            m_sceneLoader.Load(Constants.GachaSceneName, onNewSceneLoaded);
+        }
+
+        public void LoadScene(string sceneName)
+        {
+            onNewSceneLoaded += OnNewSceneLoaded;
+
+            m_loadingCanvas.SetActive(true);
+
+            m_sceneLoader.Load(sceneName, onNewSceneLoaded);
+        }
+
+        public void SetGameMode(GameMode gameMode) => m_gameMode = gameMode;
 
         private void Awake()
         {
@@ -53,33 +93,6 @@ namespace CodeBase
             m_bGMController.Init();
 
             LoadStartScene();
-        }
-
-        public void LoadStartScene()
-        {
-            onStartMenuLoaded += OnStartMenuLoaded;
-
-            m_loadingCanvas.SetActive(true);
-
-            m_sceneLoader.Load(Constants.StartSceneName, onStartMenuLoaded);
-        }
-
-        public void LoadGachaScene()
-        {
-            onNewSceneLoaded += OnNewSceneLoaded;
-
-            m_loadingCanvas.SetActive(true);
-
-            m_sceneLoader.Load(Constants.GachaSceneName, onNewSceneLoaded);
-        }
-
-        public void LoadScene(string sceneName)
-        {
-            onNewSceneLoaded += OnNewSceneLoaded;
-
-            m_loadingCanvas.SetActive(true);
-
-            m_sceneLoader.Load(sceneName, onNewSceneLoaded);
         }
 
         private void OnNewSceneLoaded()
