@@ -1,5 +1,6 @@
 using CodeBase.Gacha.Claw;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace CodeBase.Gacha
 {
@@ -8,9 +9,11 @@ namespace CodeBase.Gacha
         [SerializeField] private GachaController m_gachaController;
         [SerializeField] private ClawInput m_clawInput;
 
+        public event UnityAction EventOnSceneLaunch;
+
         public override void LaunchScene()
         {
-            // DO some greetings for example
+            EventOnSceneLaunch?.Invoke();
         }
 
         public void StartGacha()

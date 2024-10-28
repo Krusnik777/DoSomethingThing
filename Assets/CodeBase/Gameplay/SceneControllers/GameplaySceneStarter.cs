@@ -1,6 +1,7 @@
 using CodeBase.Gameplay.Hero;
 using CodeBase.Data;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace CodeBase.Gameplay
 {
@@ -9,9 +10,11 @@ namespace CodeBase.Gameplay
         [SerializeField] private GameplayController m_gameplayController;
         [SerializeField] private HeroInput m_heroInput;
 
+        public event UnityAction EventOnSceneLaunch;
+
         public override void LaunchScene()
         {
-            // DO "DAY number" anim for example
+            EventOnSceneLaunch?.Invoke();
         }
 
         public void StartGame()
