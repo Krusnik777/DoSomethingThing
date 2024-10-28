@@ -297,7 +297,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8217887588221018637, guid: 5716968219d82d24b95c568e2c0c7ff7, type: 3}
       propertyPath: nextSceneName
-      value: GameplaySceneBase
+      value: Day1GameplayScene
       objectReference: {fileID: 0}
     - target: {fileID: 8396122867258842312, guid: 5716968219d82d24b95c568e2c0c7ff7, type: 3}
       propertyPath: m_Name
