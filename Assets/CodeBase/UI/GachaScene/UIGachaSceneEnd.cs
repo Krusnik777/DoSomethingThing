@@ -31,11 +31,16 @@ namespace CodeBase.UI
         {
             if (GlobalController.GameMode == GameMode.Story)
             {
-                /*
                 int day = GlobalController.PlayerProgress.CurrentDay;
-                GlobalController.Instance.LoadScene(Constants.GetSceneNameByDay(day));
-                */
-                GlobalController.Instance.LoadScene("GameplaySceneBase"); // TEMP for Tests
+
+                if (day <= 2)  // TEMP for Tests
+                {
+                    GlobalController.Instance.LoadScene(Constants.GetSceneNameByDay(day));
+                }
+                else
+                {
+                    GlobalController.Instance.LoadScene("GameplaySceneBase");
+                }
             }
             else
             {

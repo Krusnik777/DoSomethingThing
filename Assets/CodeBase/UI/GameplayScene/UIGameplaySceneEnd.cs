@@ -53,6 +53,7 @@ namespace CodeBase.UI
             m_panel.SetActive(true);
             m_HUD.SetActive(false);
 
+            GlobalController.BGMController.StopMusic();
             GlobalController.SFXController.PlayVictorySound();
         }
 

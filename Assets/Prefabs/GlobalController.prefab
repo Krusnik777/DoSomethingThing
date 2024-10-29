@@ -81,7 +81,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 4726298491569607758, guid: 9761dd485e568d540a8aa263449de2a2, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -179,7 +179,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_startMenuTheme: {fileID: 8300000, guid: 782cd1202f5c99343be20d180f63fb1f, type: 3}
   m_gameOverTheme: {fileID: 8300000, guid: 306f37afb0913fd4a94cabd6aae3e04d, type: 3}
-  m_audioClips: []
+  m_gameplaySceneStartTheme: {fileID: 8300000, guid: 9cd61b2d8f6621647a0f0daa21589a44, type: 3}
+  m_gachaSceneTheme: {fileID: 8300000, guid: a2fdfdddddebc4f4da931e6ca44aafb3, type: 3}
+  m_vn1Theme: {fileID: 8300000, guid: 173090e508e84144ca5819063e1e0c65, type: 3}
+  m_vn2Theme: {fileID: 8300000, guid: 1ae51d4a887d97546897187f67bc0078, type: 3}
+  m_vn3Theme: {fileID: 8300000, guid: bd6516a84819a544eafbd1c28f76ee7a, type: 3}
+  m_audioClips:
+  - {fileID: 8300000, guid: f02a2bc4a80ad104c9989c90da5e5a7c, type: 3}
+  - {fileID: 8300000, guid: e4fb8cabb4df61544a5ec1d3616b493d, type: 3}
+  - {fileID: 8300000, guid: 6065ef78189bdef40bee73b1b5f4608e, type: 3}
+  - {fileID: 8300000, guid: f9b3694fa511db54486c97c0764db40a, type: 3}
+  - {fileID: 8300000, guid: bfc3c719307599946a4e2fd6a2526bb7, type: 3}
 --- !u!1 &2692757111672525919
 GameObject:
   m_ObjectHideFlags: 0

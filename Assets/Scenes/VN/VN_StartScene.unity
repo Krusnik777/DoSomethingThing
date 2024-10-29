@@ -244,6 +244,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_slideController: {fileID: 2413860978461094262}
+  m_sceneNumber: 1
 --- !u!4 &2009602852
 Transform:
   m_ObjectHideFlags: 0

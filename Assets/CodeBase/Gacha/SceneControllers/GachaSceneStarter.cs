@@ -13,6 +13,8 @@ namespace CodeBase.Gacha
 
         public override void LaunchScene()
         {
+            GlobalController.BGMController.StartPlayGachaSceneBGM();
+
             EventOnSceneLaunch?.Invoke();
         }
 

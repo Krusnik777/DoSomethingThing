@@ -14,12 +14,16 @@ namespace CodeBase.Gameplay
 
         public override void LaunchScene()
         {
+            GlobalController.BGMController.StartPlayStartSceneBGM();
+
             EventOnSceneLaunch?.Invoke();
         }
 
         public void StartGame()
         {
             m_heroInput.enabled = true;
+
+            GlobalController.BGMController.StartPlayRandomBGM();
 
             if (GlobalController.Instance != null)
                 m_gameplayController.Init(GlobalController.PlayerProgress);
