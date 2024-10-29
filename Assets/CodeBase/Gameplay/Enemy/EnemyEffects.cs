@@ -28,7 +28,7 @@ namespace CodeBase.Gameplay.Enemy
 
         private void OnDie(object sender)
         {
-
+            // Something
         }
     }
 }

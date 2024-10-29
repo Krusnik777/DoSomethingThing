@@ -1654,7 +1654,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Start
+  m_text: "\u041D\u0430\u0447\u0438\u043D\u0430\u0435\u043C!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9adb55118df3a2f45974a9963c437844, type: 2}
   m_sharedMaterial: {fileID: -7672539593481581489, guid: 9adb55118df3a2f45974a9963c437844, type: 2}
