@@ -33,14 +33,7 @@ namespace CodeBase.Gameplay
 
             m_heroHealth.SetHealthPoints(progress.HealthPoints);
 
-            if (progress.EquippedWeapon != null)
-            {
-                m_heroWeapon.GetWeapon(progress.EquippedWeapon);
-            }
-            else
-            {
-                m_heroWeapon.enabled = false;
-            }
+            m_heroWeapon.SetupWeapon(progress.EquippedWeapon);
 
             m_spawnController.Init(m_heroHealth);
             m_spawnController.EventOnSpawnDead += OnSpawnDead;

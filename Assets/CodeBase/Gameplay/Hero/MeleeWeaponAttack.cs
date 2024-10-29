@@ -1,15 +1,23 @@
 using CodeBase.Configs;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace CodeBase.Gameplay.Hero
 {
-    public class MeleeWeaponAttack : MonoBehaviour, IWeaponConfigInstaller
+    public class MeleeWeaponAttack : MonoBehaviour, IWeaponConfigInstaller, IAttack
     {
         [SerializeField] private MeleeWeaponAttackAnimator m_animator;
         [SerializeField] private float m_cooldown;
         [SerializeField] private float m_radius;
         [SerializeField] private int m_damage;
+
+        public float Cooldown => m_cooldown;
+        public float Radius => m_radius;
+        public bool ReadyToAttack => timer >= m_cooldown && targets.Length > 0;
+        public bool InCooldown => timer < m_cooldown;
+
+        public event UnityAction EventOnCooldownStart;
 
         private HealthPoints[] targets;
 
@@ -49,7 +57,7 @@ namespace CodeBase.Gameplay.Hero
 
         private HealthPoints[] FindTargets()
         {
-            Collider[] colliders = Physics.OverlapSphere(transform.position, m_radius);
+            Collider[] colliders = Physics.OverlapSphere(transform.root.position, m_radius);
 
             List<HealthPoints> result = new List<HealthPoints>();
 
@@ -69,6 +77,7 @@ namespace CodeBase.Gameplay.Hero
         {
             timer = 0;
             m_animator.Attack();
+            EventOnCooldownStart?.Invoke();
         }
 
         private void AnimationEventOnHit()
@@ -84,7 +93,7 @@ namespace CodeBase.Gameplay.Hero
         private void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(transform.position, m_radius);
+            Gizmos.DrawWireSphere(transform.root.position, m_radius);
         }
 
         #endif

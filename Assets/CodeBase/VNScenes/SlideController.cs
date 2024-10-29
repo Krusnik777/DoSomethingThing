@@ -52,11 +52,11 @@ namespace CodeBase.VNScenes
             }
             if (switchMode == SwitchSlideMode.player)
             {
-                if (Input.GetKeyDown(KeyCode.RightArrow))
+                if (Input.GetButtonDown("Fire1"))
                 {
                     currentSlideIndex++;
                 }
-                if (Input.GetKeyDown(KeyCode.LeftArrow))
+                else if (Input.GetButtonDown("Fire2"))
                 {
                     currentSlideIndex--;
                 }

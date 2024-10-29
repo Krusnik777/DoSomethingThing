@@ -19,14 +19,14 @@ namespace CodeBase.UI
             {
                 if (conditions[i] is DefeatEnemiesCondition)
                 {
-                    m_defeatEnemiesTaskText.text = $"Defeat Enemies: {conditions[i].TargetValue}";
+                    m_defeatEnemiesTaskText.text = $"Победить врагов: {conditions[i].TargetValue}";
                     m_defeatEnemiesTaskText.gameObject.SetActive(true);
                 }
 
                 if (conditions[i] is TimeCondition)
                 {
                     var time = TimeSpan.FromSeconds(conditions[i].TargetValue);
-                    m_surviveTaskText.text = $"Survive time: {time.ToString(@"mm\:ss")}";
+                    m_surviveTaskText.text = $"Выжить определенное время: {time.ToString(@"mm\:ss")}";
                     m_surviveTaskText.gameObject.SetActive(true);
                 }
             }

@@ -6,7 +6,10 @@ namespace CodeBase.Audio
     public class BGMController : MonoBehaviour
     {
         [SerializeField] private AudioClip m_startMenuTheme;
+        [SerializeField] private AudioClip m_gameOverTheme;
         [SerializeField] private AudioClip[] m_audioClips;
+
+        public float GameOverLength => m_gameOverTheme.length;
 
         private AudioSource audioSource;
 
@@ -17,7 +20,17 @@ namespace CodeBase.Audio
 
         public void StartPlayStartMenuBGM()
         {
+            if (m_startMenuTheme == null) return;
+
             audioSource.clip = m_startMenuTheme;
+            audioSource.loop = true;
+            audioSource.Play();
+        }
+
+        public void StartPlayGameOverBGM()
+        {
+            audioSource.clip = m_gameOverTheme;
+            audioSource.loop = false;
             audioSource.Play();
         }
 

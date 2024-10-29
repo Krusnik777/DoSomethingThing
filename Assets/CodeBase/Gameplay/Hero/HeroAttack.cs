@@ -1,9 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace CodeBase.Gameplay.Hero
 {
-    public class HeroAttack : MonoBehaviour
+    public class HeroAttack : MonoBehaviour, IAttack
     {
         [SerializeField] private HeroMovement m_heroMovement;
         [SerializeField] private HeroAnimator m_animator;
@@ -11,9 +12,21 @@ namespace CodeBase.Gameplay.Hero
         [SerializeField] private float m_radius;
         [SerializeField] private int m_damage;
 
+        public float Cooldown => m_cooldown;
+        public float Radius => m_radius;
+        public bool ReadyToAttack => timer >= m_cooldown && targets?.Length > 0;
+        public bool InCooldown => timer < m_cooldown; 
+
+        public event UnityAction EventOnCooldownStart;
+
         private HealthPoints[] targets;
 
         private float timer;
+
+        private void Start()
+        {
+            timer = m_cooldown;
+        }
 
         private void Update()
         {
@@ -57,6 +70,7 @@ namespace CodeBase.Gameplay.Hero
         {
             timer = 0;
             m_animator.Attack();
+            EventOnCooldownStart?.Invoke();
         }
 
         private void AnimationEventOnHit()

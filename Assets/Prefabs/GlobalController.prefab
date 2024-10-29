@@ -83,7 +83,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -178,6 +178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_startMenuTheme: {fileID: 0}
+  m_gameOverTheme: {fileID: 8300000, guid: 306f37afb0913fd4a94cabd6aae3e04d, type: 3}
   m_audioClips: []
 --- !u!1 &2692757111672525919
 GameObject:
@@ -893,6 +894,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 832bde76493fa83468de89e00ddea4ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_victorySound: {fileID: 8300000, guid: a04eaf427cea9b640b76160c5a111f75, type: 3}
+  m_gachaGetSound: {fileID: 8300000, guid: 538379c9e45094d4b83f4308cd6ba635, type: 3}
+  m_gachaNotGetSound: {fileID: 8300000, guid: 49d69eefdcd51bb4a81d5ab1f173ed17, type: 3}
 --- !u!1001 &3603710766202299454
 PrefabInstance:
   m_ObjectHideFlags: 0

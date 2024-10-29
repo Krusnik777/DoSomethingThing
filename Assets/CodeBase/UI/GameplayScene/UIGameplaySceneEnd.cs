@@ -52,6 +52,8 @@ namespace CodeBase.UI
         {
             m_panel.SetActive(true);
             m_HUD.SetActive(false);
+
+            GlobalController.SFXController.PlayVictorySound();
         }
 
         private void OnFailure()
@@ -64,7 +66,11 @@ namespace CodeBase.UI
 
         private IEnumerator GameOverRoutine()
         {
-            yield return new WaitForSeconds(2f);
+            float seconds = GlobalController.BGMController.GameOverLength;
+
+            GlobalController.BGMController.StartPlayGameOverBGM();
+
+            yield return new WaitForSeconds(seconds);
 
             //GlobalController.Instance.LoadScene(Constants.VN_GameOverSceneName);
             GlobalController.Instance.LoadStartScene(); // TEMP

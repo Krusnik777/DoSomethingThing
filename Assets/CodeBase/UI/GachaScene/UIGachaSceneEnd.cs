@@ -47,16 +47,25 @@ namespace CodeBase.UI
         {
             if (config == null)
             {
-                m_text.text = "You Got Nothing. Get Some Health";
+                m_text.text = "Увы, ничего.\n + 1 очко здоровья";
                 if (GlobalController.Instance != null)
+                {
                     GlobalController.PlayerProgress.HealthPoints++;
+                    GlobalController.SFXController.PlayGachaNotGetSound();
+                }
             }
             else
             {
-                m_text.text = $"You Got Weapon: {config.Name}";
+                m_text.text = $"Получено: {config.Name}.\n" +
+                    $"Урон: {config.Damage}.\n" +
+                    $"Радиус: {config.Radius}.\n" +
+                    $"Задерка: {config.Cooldown}.";
 
                 if (GlobalController.Instance != null)
+                {
                     GlobalController.PlayerProgress.EquippedWeapon = config;
+                    GlobalController.SFXController.PlayGachaGetSound();
+                }
             }
 
             m_panel.SetActive(true);

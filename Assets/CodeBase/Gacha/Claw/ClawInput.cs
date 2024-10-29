@@ -10,7 +10,7 @@ namespace CodeBase.Gacha.Claw
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetButtonDown("Jump"))
             {
                 m_clawMovement.StartDescend();
 

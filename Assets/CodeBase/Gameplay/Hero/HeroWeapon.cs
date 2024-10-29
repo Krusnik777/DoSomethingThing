@@ -8,14 +8,28 @@ namespace CodeBase.Hero
     {
         [SerializeField] private Transform m_weaponPoint;
         [SerializeField] private HeroAttack m_heroAttack;
+        [SerializeField] private AttackRadiusController m_attackRadiusController;
 
-        public void GetWeapon(WeaponConfig config)
+        private void Start()
         {
-            var weapon = Instantiate(config.Prefab, m_weaponPoint);
+            SetupWeapon(null);
+        }
 
-            weapon.InstallConfig(config);
+        public void SetupWeapon(WeaponConfig config)
+        {
+            if (config == null)
+            {
+                m_attackRadiusController.Init(m_heroAttack);
+            }
+            else
+            {
+                var weapon = Instantiate(config.Prefab, m_weaponPoint);
 
-            m_heroAttack.enabled = false;
+                weapon.InstallConfig(config);
+                m_attackRadiusController.Init(weapon);
+
+                m_heroAttack.enabled = false;
+            }
         }
     }
 }
