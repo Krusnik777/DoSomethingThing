@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -15,7 +13,7 @@ namespace CodeBase.VNScenes
         /// <summary>
         /// text of this slide
         /// </summary>
-        public string text;
+        [TextArea(1,5)] public string text;
         /// <summary>
         /// image of this slide
         /// </summary>

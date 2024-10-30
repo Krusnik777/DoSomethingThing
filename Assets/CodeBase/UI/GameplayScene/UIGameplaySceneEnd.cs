@@ -38,8 +38,7 @@ namespace CodeBase.UI
             {
                 if (GlobalController.PlayerProgress.CurrentDay >= 3)
                 {
-                    //GlobalController.Instance.LoadScene(Constants.VN_GameEndSceneName);
-                    GlobalController.Instance.LoadStartScene(); // TEMP
+                    GlobalController.Instance.LoadScene(Constants.VN_GameEndSceneName);
 
                     return;
                 }
@@ -73,8 +72,14 @@ namespace CodeBase.UI
 
             yield return new WaitForSeconds(seconds);
 
-            //GlobalController.Instance.LoadScene(Constants.VN_GameOverSceneName);
-            GlobalController.Instance.LoadStartScene(); // TEMP
+            if (GlobalController.GameMode == GameMode.Story)
+            {
+                GlobalController.Instance.LoadScene(Constants.VN_GameOverSceneName);
+            }
+            else
+            {
+                GlobalController.Instance.LoadStartScene();
+            }
         }
     }
 }

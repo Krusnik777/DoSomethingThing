@@ -23,6 +23,7 @@ namespace CodeBase.VNScenes
 
         [Header("General Settings")]
         [SerializeField] private Slide[] slides;
+        [SerializeField] private bool returnToMainMenu;
         [SerializeField] private string nextSceneName = "next scene name";
         [SerializeField] private SwitchSlideMode switchMode;
         [Header("Links")]
@@ -79,7 +80,15 @@ namespace CodeBase.VNScenes
 
         private void LoadNextScene()
         {
-            GlobalController.Instance.LoadScene(nextSceneName);
+            if (returnToMainMenu)
+            {
+                GlobalController.Instance.LoadStartScene();
+            }
+            else
+            {
+                GlobalController.Instance.LoadScene(nextSceneName);
+            }
+
             enabled = false;
         }
 
@@ -92,7 +101,6 @@ namespace CodeBase.VNScenes
             ResetTimer(slide.slideTime);
             text.text = slide.text;
             background.sprite = slide.sprite;
-
         }
 
         /// <summary>

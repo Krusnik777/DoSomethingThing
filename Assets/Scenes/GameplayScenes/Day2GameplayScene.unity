@@ -4178,7 +4178,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8177807573486221497, guid: ee24e119d4e40b74e82fa4ef4de7e2ec, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 37.73161
+      value: 37.68
       objectReference: {fileID: 0}
     - target: {fileID: 8177807573486221497, guid: ee24e119d4e40b74e82fa4ef4de7e2ec, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4216,7 +4216,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Carpet_01
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8245035271722826200, guid: ee24e119d4e40b74e82fa4ef4de7e2ec, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -9296,13 +9297,42 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5994607674021740567, guid: ceddce4fa21192b4894d7164957a9fa9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1846457417}
   m_SourcePrefab: {fileID: 100100000, guid: ceddce4fa21192b4894d7164957a9fa9, type: 3}
 --- !u!4 &1846457415 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6375636129220516525, guid: ceddce4fa21192b4894d7164957a9fa9, type: 3}
   m_PrefabInstance: {fileID: 1846457414}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1846457416 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5994607674021740567, guid: ceddce4fa21192b4894d7164957a9fa9, type: 3}
+  m_PrefabInstance: {fileID: 1846457414}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1846457417
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1846457416}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.30977, y: 1.0691012, z: 1.3170198}
+  m_Center: {x: 0.0000016689681, y: 0.5452009, z: 0.6539729}
 --- !u!1001 &1847286900
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10950,7 +10980,7 @@ PrefabInstance:
       objectReference: {fileID: 773768046}
     - target: {fileID: 6815999864719725798, guid: 3150db15498c4b0498be1287b404db48, type: 3}
       propertyPath: m_targetTime
-      value: 60
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7865526061995457044, guid: 3150db15498c4b0498be1287b404db48, type: 3}
       propertyPath: m_IsActive
