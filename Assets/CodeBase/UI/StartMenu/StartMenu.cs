@@ -37,7 +37,10 @@ namespace CodeBase.UI
         private void OnStartInfiniteButton()
         {
             GlobalController.Instance.SetGameMode(GameMode.Infinite);
-            GlobalController.Instance.LoadScene("GameplaySceneBase"); // SceneName is TEMP for Tests
+
+            int randomStartLevelId = Random.Range(1, 3);
+
+            GlobalController.Instance.LoadScene(Constants.GetSceneNameByDay(randomStartLevelId));
         }
 
         private void OnSettingsButton()

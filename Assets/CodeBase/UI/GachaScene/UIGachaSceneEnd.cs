@@ -33,18 +33,13 @@ namespace CodeBase.UI
             {
                 int day = GlobalController.PlayerProgress.CurrentDay;
 
-                if (day <= 2)  // TEMP for Tests
-                {
-                    GlobalController.Instance.LoadScene(Constants.GetSceneNameByDay(day));
-                }
-                else
-                {
-                    GlobalController.Instance.LoadScene("GameplaySceneBase");
-                }
+                GlobalController.Instance.LoadScene(Constants.GetSceneNameByDay(day));
             }
             else
             {
-                GlobalController.Instance.LoadScene("GameplaySceneBase"); // TEMP for Tests
+                int randomLevelId = Random.Range(1, 4);
+
+                GlobalController.Instance.LoadScene(Constants.GetSceneNameByDay(randomLevelId));
             }
         }
 

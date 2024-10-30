@@ -6,6 +6,7 @@ namespace CodeBase.Gameplay.Level
     public class DefeatEnemiesCondition : MonoBehaviour, ILevelCondition
     {
         [SerializeField] private int m_targetKills;
+        [SerializeField] private int[] m_infiniteModeKills;
 
         public event UnityAction OnCompleted;
 
@@ -23,6 +24,17 @@ namespace CodeBase.Gameplay.Level
             gameplayController.KillsCounter.EventOnKillsUpdated += OnKillsUpdated;
 
             completed = false;
+        }
+
+        private void Start()
+        {
+            if (GlobalController.Instance == null) return;
+
+            if (GlobalController.GameMode != GameMode.Infinite) return;
+
+            int randomTimeId = Random.Range(0, m_infiniteModeKills.Length);
+
+            m_targetKills = m_infiniteModeKills[randomTimeId];
         }
 
         private void OnKillsUpdated(int currentKills)

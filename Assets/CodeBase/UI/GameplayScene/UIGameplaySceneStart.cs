@@ -14,6 +14,7 @@ namespace CodeBase.UI
         [SerializeField] private GameObject m_HUD;
         [SerializeField] private Animator m_startAnimator;
         [SerializeField] private TextMeshProUGUI m_startWords;
+        [SerializeField] private UIMissionTasks m_uIMissionTasks;
 
         private void Awake()
         {
@@ -52,6 +53,7 @@ namespace CodeBase.UI
         {
             m_startAnimator.enabled = true;
             m_startWords.text = $"Δενό {GlobalController.PlayerProgress.CurrentDay}";
+            m_uIMissionTasks.Setup();
         }
     }
 }

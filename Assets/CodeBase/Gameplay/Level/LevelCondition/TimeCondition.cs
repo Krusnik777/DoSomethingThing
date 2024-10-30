@@ -7,6 +7,7 @@ namespace CodeBase.Gameplay.Level
     public class TimeCondition : MonoBehaviour, ILevelCondition
     {
         [SerializeField] private float m_targetTime;
+        [SerializeField] private float[] m_infiniteModeTimes;
 
         public event UnityAction OnCompleted;
 
@@ -22,6 +23,17 @@ namespace CodeBase.Gameplay.Level
             timeCounter = gameplayController.TimeCounter;
 
             StartCoroutine(UpdateTimeRoutine());
+        }
+
+        private void Start()
+        {
+            if (GlobalController.Instance == null) return;
+
+            if (GlobalController.GameMode != GameMode.Infinite) return;
+
+            int randomTimeId = Random.Range(0, m_infiniteModeTimes.Length);
+
+            m_targetTime = m_infiniteModeTimes[randomTimeId];
         }
 
         private IEnumerator UpdateTimeRoutine()

@@ -29,11 +29,13 @@ namespace CodeBase
 
             switch(day)
             {
-                case 1: name = Gameplay1SceneName;
+                case 1 : name = Gameplay1SceneName;
                     break;
-                case 2: name = Gameplay2SceneName;
+                case 2 : name = Gameplay2SceneName;
                     break;
-                case 3: name = Gameplay3SceneName;
+                case 3 : name = Gameplay3SceneName;
+                    break;
+                default : name = Gameplay1SceneName;
                     break;
             }
 

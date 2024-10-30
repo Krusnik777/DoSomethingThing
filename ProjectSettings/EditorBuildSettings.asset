@@ -21,6 +21,9 @@ EditorBuildSettings:
     path: Assets/Scenes/GameplayScenes/Day2GameplayScene.unity
     guid: 79c93b1756d3cc541a56d31e1697c60c
   - enabled: 1
+    path: Assets/Scenes/GameplayScenes/Day3GameplayScene.unity
+    guid: 20e74632404d6c240a963e7ccffdae93
+  - enabled: 1
     path: Assets/Scenes/VN/VN_StartScene.unity
     guid: 9da6ac1c84c179f4a9b4fab55847c778
   - enabled: 1
@@ -29,7 +32,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/VN/VN_GameEndScene.unity
     guid: eae4761f18287a849864c349c163bb45
-  - enabled: 1
-    path: Assets/Scenes/GameplayScenes/GameplaySceneBase.unity
-    guid: 98e46c66a6f25fb4ca8f133bd51cb4a3
   m_configObjects: {}

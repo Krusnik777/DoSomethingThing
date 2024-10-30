@@ -11,7 +11,7 @@ namespace CodeBase.UI
         [SerializeField] private TextMeshProUGUI m_surviveTaskText;
         [SerializeField] private GameObject m_levelConditions;
 
-        private void Start()
+        public void Setup()
         {
             var conditions = m_levelConditions.GetComponentsInChildren<ILevelCondition>();
 
